@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectUserFactors">
+    <factor id="completionFinishedType">
+      <dailyData date="27-04-2024">
+        <observation name="cancelled" value="23.0" />
+        <observation name="explicitSelect" value="4.0" />
+      </dailyData>
+    </factor>
+    <factor id="completionType">
+      <dailyData date="27-04-2024">
+        <observation name="BASIC" value="17.0" />
+      </dailyData>
+    </factor>
+    <factor id="completionUsage">
+      <dailyData date="27-04-2024">
+        <observation name="count" value="27.0" />
+      </dailyData>
+    </factor>
+    <factor id="fullLineFactors" />
+    <factor id="itemPosition">
+      <dailyData date="27-04-2024">
+        <observation name="0" value="3.0" />
+        <observation name="9" value="1.0" />
+      </dailyData>
+    </factor>
+    <factor id="mnemonicsUsage">
+      <dailyData date="27-04-2024">
+        <observation name="total" value="4.0" />
+        <observation name="withMnemonics" value="0.0" />
+      </dailyData>
+    </factor>
+    <factor id="prefixLength">
+      <dailyData date="27-04-2024">
+        <observation name="11" value="1.0" />
+        <observation name="16" value="2.0" />
+        <observation name="20" value="1.0" />
+      </dailyData>
+    </factor>
+    <factor id="prefixMatchingType">
+      <dailyData date="27-04-2024">
+        <observation name="GREEDY_WITH_CASE" value="3.0" />
+      </dailyData>
+    </factor>
+    <factor id="templatesUsage">
+      <dailyData date="27-04-2024">
+        <observation name="totalStartingWithPrefix" value="4.0" />
+      </dailyData>
+    </factor>
+    <factor id="timeBetweenTyping">
+      <dailyData date="27-04-2024">
+        <observation name="average" value="204.701754" />
+        <observation name="count" value="57.0" />
+      </dailyData>
+    </factor>
+  </component>
+</project>
