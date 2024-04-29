@@ -1,9 +1,15 @@
 [package]
 name = "modbus_buffer"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
+authors = ["pythcoiner <pythcoiner@proton.me>"]
+description = "Circular buffer implementation tailored for Modbus communication in no_std environments."
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/pythcoiner/modbus_buffer"
+documentation = "https://docs.rs/modbus_buffer"
+keywords = ["modbus", "buffer", "no_std", "embedded"]
+categories = ["embedded", "no-std"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
-#modbus-core = { version = "0.1.0", default-features = false, features = ["rtu"] }
+
