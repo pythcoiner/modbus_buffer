@@ -17,6 +17,7 @@ pub struct ModbusBuffer<const CAPACITY: usize> {
 }
 impl<const CAPACITY: usize> ModbusBuffer<CAPACITY> {
 
+    /// Creates a new `ModbusBuffer` with specified constants.
     #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
         
@@ -32,20 +33,25 @@ impl<const CAPACITY: usize> ModbusBuffer<CAPACITY> {
         }
     }
 
+    /// Sets the minimum frame length required to detect a Modbus frame, excluding CRC.
     pub fn min_frame_len(mut self, min_frame_len: usize) -> Self {
         self.min_frame_len = min_frame_len;
         self
     }
 
+    /// Sets the maximum frame length that can be detected, excluding CRC.
     pub fn max_frame_len(mut self, max_frame_len: usize) -> Self {
         self.max_frame_len = max_frame_len;
         self
     }
 
+    /// Configures whether to overwrite old data if the buffer is full or to panic.
     pub fn overwrite(mut self, overwrite: bool) -> Self {
             self.overwrite = overwrite;
             self
         }
+
+    /// Adds an item to the buffer, handling overflow based on the `overwrite` flag.
 
     pub fn push(&mut self, item: u8) {
         if self.size == CAPACITY {
@@ -66,7 +72,7 @@ impl<const CAPACITY: usize> ModbusBuffer<CAPACITY> {
         }
     }
 
-    // Removes and returns the oldest element from the buffer
+    /// Removes and returns the oldest element from the buffer if available.
     pub fn pop(&mut self) -> Option<u8> {
         if self.size == 0 {
             None
@@ -79,18 +85,22 @@ impl<const CAPACITY: usize> ModbusBuffer<CAPACITY> {
         }
     }
 
+    /// Returns the current number of elements in the buffer.
     pub fn len(&self) -> usize {
         self.size
     }
 
+    /// Returns true if the buffer is empty.
     pub fn is_empty(&self) -> bool {
         self.size == 0
     }
 
+    /// Returns true if the buffer is full.
     pub fn is_full(&self) -> bool {
         self.size == CAPACITY
     }
 
+    /// Copies the current data from the buffer into the provided output buffer and returns the size.
     fn frame(&self, output_buffer: &mut [u8;CAPACITY]) -> Option<usize> {
         let mut index = 0;
 
@@ -125,6 +135,7 @@ impl<const CAPACITY: usize> ModbusBuffer<CAPACITY> {
         Some(self.size)
     }
 
+    /// Computes the CRC16 for the provided data array.
     fn crc16(data: &[u8]) -> u16 {
         let mut crc = 0xFFFF;
         for x in data {
@@ -144,6 +155,7 @@ impl<const CAPACITY: usize> ModbusBuffer<CAPACITY> {
         crc << 8 | crc >> 8
     }
 
+    /// Verifies the CRC of the provided frame.
     fn check_crc(frame: &[u8]) -> bool {
         if frame.len() > 4 {
             let crc = Self::crc16(&frame[..frame.len()-2]);
@@ -155,6 +167,7 @@ impl<const CAPACITY: usize> ModbusBuffer<CAPACITY> {
 
     }
 
+    /// Tries to find a valid Modbus frame in the buffer.
     fn try_decode_buffer(&self, buffer: &[u8]) -> Option<(usize, usize)> {
         let mut window_size = self.min_frame_len + 2;
         if buffer.len() < window_size {
@@ -182,6 +195,7 @@ impl<const CAPACITY: usize> ModbusBuffer<CAPACITY> {
         None
     }
 
+    /// Attempts to decode a Modbus frame from the internal buffer and copies it into the provided buffer if successful.
     pub fn try_decode_frame(&mut self, buffer: &mut [u8;CAPACITY]) -> Option<usize> {
         if self.size == 0 || self.size < self.min_frame_len {
             return None
