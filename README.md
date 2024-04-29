@@ -21,12 +21,12 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-modbus_buffer = "0.1.0"
+modbus_buffer = "0.0.2"
 ```
 
 ## Example usage:
 
-``` 
+```rust
 use modbus_buffer::ModbusBuffer;
 
 fn main() {

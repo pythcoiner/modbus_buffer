@@ -1,6 +1,6 @@
 [package]
 name = "modbus_buffer"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 authors = ["pythcoiner <pythcoiner@proton.me>"]
 description = "Circular buffer implementation tailored for Modbus communication in no_std environments."
